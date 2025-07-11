@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { ApplyJobPost } from "../../../use-cases/JobSeeker/applyJobUseCase";
-import { ViewAllJobPost } from "../../../use-cases/JobSeeker/viewAllJobPostUseCase";
+import { ApplyJobPost } from "../../../Services/JobSeeker/applyJobUseCase";
+import { ViewAllJobPost } from "../../../Services/JobSeeker/viewAllJobPostUseCase";
 import { JobSeekerRepositoryDb } from "../../repository-db/JobseekerRepositoryDb";
 
 const jobSeekerRepo = new JobSeekerRepositoryDb();

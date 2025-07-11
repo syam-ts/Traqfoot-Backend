@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { DeleteJobPost } from "../../../use-cases/Admin/deleteJobPostUseCase";
-import { ViewAllJobPost } from "../../../use-cases/Admin/ViewAllJobPostUsecase";
+import { DeleteJobPost } from "../../../Services/Admin/deleteJobPostUseCase";
+import { ViewAllJobPost } from "../../../Services/Admin/ViewAllJobPostUsecase";
 import { AdminRepositoryDb } from "../../repository-db/AdminRepositoryDb";
 
 const adminRepo = new AdminRepositoryDb();

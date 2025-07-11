@@ -1,14 +1,20 @@
 {
-  "name": "Clean-Architecture-Template",
+  "name": "Traqfoot-Backend",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/syam-ts/Clean-Architecture-Template.git",
+  "main": "app.js",
+  "repository": "https://github.com/syam-ts/Traqfoot-Backend.git",
   "author": "<syamnandhu3@gmail.com>",
+  "scripts": {
+    "dev": "node src/dist/app.js",
+    "test": "test src/dist/app.js "
+  },
   "license": "MIT",
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
     "express": "^5.1.0",
+    "mongoose": "^8.16.3",
     "nodemon": "^3.1.10"
   },
   "devDependencies": {
