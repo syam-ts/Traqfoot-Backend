@@ -4,5 +4,5 @@ export interface SensorRepository {
 
     newSensor(deviceName: string): Promise<void>
   
-    fetchFootfall(): Promise<any>
+    fetchFootfall(sensor_id: string, timestamp: Date, newCount: number): Promise<any>
 }

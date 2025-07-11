@@ -6,6 +6,6 @@ const sensorRouter = Router();
 const sensorCtrl = new SensorController();
 
 sensorRouter.post("/new-sensor", sensorCtrl.newSensor);
-// sensorRouter.post("/sensor-data");
+sensorRouter.post("/fetch-footfall", sensorCtrl.fetchFootfall);
 
 export default sensorRouter;

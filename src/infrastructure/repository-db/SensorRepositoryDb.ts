@@ -1,21 +1,33 @@
 import { SensorModel } from "../../domain/entities/Sensor";
 import { SensorRepository } from "../../domain/interfaces/repositories/SensorRepository";
 
-
 export class SensorRepositoryDb implements SensorRepository {
-
     async newSensor(deviceName: string): Promise<void> {
-        console.log("ROM MAIN: ", deviceName)
+        console.log("ROM MAIN: ", deviceName);
         const newSensor = await new SensorModel({
             deviceName,
-            createdAt:  Date.now()
+            count: 0,
+            createdAt: Date.now(),
         }).save();
 
-        if(!newSensor) throw new Error('Adding new sensor failed');
+        if (!newSensor) throw new Error("Adding new sensor failed");
         return;
     }
 
-    async fetchFootfall(): Promise<any> {
-        
+    async fetchFootfall(
+        sensor_id: string,
+        timestamp: Date,
+        newCount: number
+    ): Promise<void> {
+        console.log('DATA: ',newCount)
+        const updateSensor = await SensorModel.findByIdAndUpdate(sensor_id, {
+            $set: {
+                timestamp: timestamp,
+            },
+            $inc: { count: newCount },
+        });
+
+        if (!updateSensor) throw new Error("Could not update footfall");
+        return;
     }
 }
