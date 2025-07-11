@@ -4,10 +4,15 @@ import { SensorRepository } from "../../domain/interfaces/repositories/SensorRep
 
 export class SensorRepositoryDb implements SensorRepository {
 
-    async newSensor(): Promise<any> {
+    async newSensor(deviceName: string): Promise<void> {
+        
         const newSensor = await new SensorModel({
-            deviveName
-        })
+            deviceName,
+            createdAt:  Date.now()
+        });
+
+        if(!newSensor) throw new Error('Adding new sensor failed');
+        return;
     }
 
     async fetchFootfall(): Promise<any> {

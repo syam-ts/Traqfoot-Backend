@@ -2,7 +2,7 @@
 
 export interface SensorRepository {
 
-    newSensor(): Promise<any>
+    newSensor(deviceName: string): Promise<void>
   
     fetchFootfall(): Promise<any>
 }
