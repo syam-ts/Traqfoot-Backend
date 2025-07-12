@@ -9,7 +9,8 @@ const fetchFootfallService = new FetchFootfall(sensorRepository);
 export class SensorController {
   async newSensor(req: any, res: any): Promise<any> {
     try {  
-      const response = await newSensorService.execute(req.body);
+      console.log('THE USE: ',req.user, ' and ' ,req.user.userId)
+      const response = await newSensorService.execute(req.body, req.user.userId);
       res.status(201).json({ message: "New sensor added", success: true });
     } catch (error) {
       return res.status(500).json({ message: error, success: false });

@@ -2,10 +2,11 @@ import { SensorModel } from "../../domain/entities/Sensor";
 import { SensorRepository } from "../../domain/interfaces/repositories/SensorRepository";
 
 export class SensorRepositoryDb implements SensorRepository {
-    async newSensor(deviceName: string, userId: string): Promise<void> {
-        console.log("ROM MAIN: ", deviceName);
+    async newSensor(sensorName: string,sensorLocation: string, userId: string): Promise<void> {
+        console.log("ROM MAIN: ", sensorName);
         const newSensor = await new SensorModel({
-            deviceName,
+            sensorName,
+            sensorLocation,
             userId,
             count: 0,
             createdAt: Date.now(),

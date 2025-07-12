@@ -3,7 +3,7 @@ import cookieparser from "cookie-parser";
 import indexRouter from "./infrastructure/http/routes/index";
 import { ConnectDB } from "./infrastructure/database/Db";
 import dotenv from "dotenv";
-import cors from "cors"; 
+import cors from "cors";
 dotenv.config({
   path: ".env",
 });
@@ -11,9 +11,14 @@ dotenv.config({
 const app = express();
 
 app.use(express.json());
-app.use(cookieparser()); 
-app.use(cors());
-app.use("/", indexRouter); 
+app.use(cookieparser());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: "GET,POST,PUT,PATCH",
+  })
+);
+app.use("/", indexRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {
