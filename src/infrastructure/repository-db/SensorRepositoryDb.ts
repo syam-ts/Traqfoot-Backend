@@ -16,6 +16,15 @@ export class SensorRepositoryDb implements SensorRepository {
         return;
     }
 
+    async fetchAllSensors(userId: string): Promise<any> {
+        console.log('useid', userId)
+        const sensors = await SensorModel.find({userId});
+        console.log('asl sensor: ', sensors)
+
+        if(!sensors) throw new Error('Could not fetch all sensors')
+            return sensors;
+    }
+
     async fetchFootfall(
         sensor_id: string,
         timestamp: Date,
