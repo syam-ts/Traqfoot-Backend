@@ -1,9 +1,15 @@
 import { SensorRepository } from "../../domain/interfaces/repositories/SensorRepository";
 
-export class NewSensor {
-  constructor(private sensorRepository: SensorRepository) {}
+interface Body {
+  deviceName: string;
+  userId: string;
+}
 
-  async execute(deviceName: string) {
-    return this.sensorRepository.newSensor(deviceName);
+export class NewSensor {
+  constructor(private sensorRepository: SensorRepository) { }
+
+  async execute(body: Body) {
+    const { deviceName, userId } = body;
+    return this.sensorRepository.newSensor(deviceName, userId);
   }
 }

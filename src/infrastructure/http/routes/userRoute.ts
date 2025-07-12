@@ -7,3 +7,6 @@ const { newUser, loginUser } = UserCtrl;
 
 userRouter.post("/signup", newUser);
 userRouter.get("/login", loginUser);
+
+
+export default userRouter;

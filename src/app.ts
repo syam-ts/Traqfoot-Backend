@@ -13,8 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieparser()); 
 app.use(cors());
-app.use("/", indexRouter);
-console.log("PORT: ", process.env.PORT);
+app.use("/", indexRouter); 
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {

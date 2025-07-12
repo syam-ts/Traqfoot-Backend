@@ -7,13 +7,13 @@ export class UserRepositoryDb implements UserRepository {
 
     async newUser(infrastructure_name: string, email: string, mobile: number, password: string, since: number): Promise<any> {
        
-       const encryptPassword = bcrypt.hashSync("traqfootHash", 10); 
+       const encryptPassword = await bcrypt.hashSync("traqfootHash", 10); 
 
         const user = await new UserModel({
             infrastructure_name,
             email,
             mobile,
-            encryptPassword,
+            password: encryptPassword,
             since
         }).save();
 
