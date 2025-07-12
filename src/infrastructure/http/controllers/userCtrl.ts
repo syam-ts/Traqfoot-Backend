@@ -12,8 +12,10 @@ export class UserController {
             const response = await newUserService.execute(req.body);
 
             res.status(201).json({ message: "New user created", success: true });
-        } catch (error) {
-            res.status(501).json({ message: error, success: false });
+        } catch (error: unknown) {
+ 
+            const err = error as ({message: string})
+            res.status(501).json({ message: err.message, success: false });
         }
     }
 
@@ -22,8 +24,10 @@ export class UserController {
             const response = await loginUserService.execute(req.body);
 
             res.status(201).json({ message: "Login succesfull", success: true });
-        } catch (error) {
-            res.status(501).json({ message: error, success: false });
+        } catch (error: unknown) { 
+          
+            const err = error as ({message: string})
+            res.status(501).json({ message: err.message, success: false });
         }
     }
 }

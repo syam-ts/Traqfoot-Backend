@@ -6,7 +6,7 @@ const UserCtrl = new UserController();
 const { newUser, loginUser } = UserCtrl;
 
 userRouter.post("/signup", newUser);
-userRouter.get("/login", loginUser);
+userRouter.post("/login", loginUser);
 
 
 export default userRouter;

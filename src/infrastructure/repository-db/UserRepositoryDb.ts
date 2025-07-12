@@ -6,8 +6,8 @@ export class UserRepositoryDb implements UserRepository {
 
 
     async newUser(infrastructure_name: string, email: string, mobile: number, password: string, since: number): Promise<any> {
-       
-       const encryptPassword = await bcrypt.hashSync("traqfootHash", 10); 
+       console.log('appafod', password)
+       const encryptPassword = await bcrypt.hashSync(password, 10); 
 
         const user = await new UserModel({
             infrastructure_name,
@@ -22,10 +22,12 @@ export class UserRepositoryDb implements UserRepository {
     }
 
     async loginUser(email: string, password: string): Promise<any> {
-        const findUser = await UserModel.find({email}).lean<User>();
-
+        console.log('emil', password)
+        const findUser = await UserModel.findOne({email}).lean<any>().exec();
+ 
+        console.log('pass 2;', findUser.password)
         if(!findUser) throw new Error('User not found');
-        if(!bcrypt.compareSync(findUser.password, password)) throw new Error('Wrong password');
+        if(!bcrypt.compareSync(password, findUser.password)) throw new Error('Wrong password');
         return findUser;
     }
 }
