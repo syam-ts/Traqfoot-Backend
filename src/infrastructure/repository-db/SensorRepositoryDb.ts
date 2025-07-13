@@ -1,4 +1,4 @@
-import { SensorModel } from "../../domain/entities/Sensor";
+import { Sensor, SensorModel } from "../../domain/entities/Sensor";
 import { SensorRepository } from "../../domain/interfaces/repositories/SensorRepository";
 
 export class SensorRepositoryDb implements SensorRepository {
@@ -20,6 +20,15 @@ export class SensorRepositoryDb implements SensorRepository {
 
         if(!sensors) throw new Error('Could not fetch all sensors')
             return sensors;
+    }
+
+    async viewSensor(sensor_id: string): Promise<Sensor> {
+
+        const sensor = await SensorModel.findOne({_id: sensor_id}).lean<Sensor>();
+
+        if(!sensor) throw new Error('No sensor found');
+
+        return sensor;
     }
 
     async fetchFootfall(

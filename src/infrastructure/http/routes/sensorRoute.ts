@@ -5,11 +5,11 @@ import verifyToken from "../../../middleware/auth";
 const sensorRouter = Router();
 
 const sensorCtrl = new SensorController();
-const { newSensor,fetchAllSensors, fetchFootfall } = sensorCtrl;
+const { newSensor,fetchAllSensors, viewSensor, fetchFootfall } = sensorCtrl;
 
 sensorRouter.post("/new", verifyToken, newSensor);
-sensorRouter.get("/fetch-allSensors", verifyToken, fetchAllSensors);
-sensorRouter.get("/view", verifyToken, fetchAllSensors);
+sensorRouter.get("/fetchAll", verifyToken, fetchAllSensors);
+sensorRouter.get("/view", verifyToken, viewSensor);
 sensorRouter.post("/fetch-footfall", fetchFootfall);
 
 export default sensorRouter;

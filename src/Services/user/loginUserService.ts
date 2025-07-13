@@ -1,4 +1,3 @@
-import { StringExpression } from "mongoose";
 import { UserRepository } from "../../domain/interfaces/repositories/UserRespository";
 
 interface Body {

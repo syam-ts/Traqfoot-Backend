@@ -1,5 +1,14 @@
 import { model, Schema } from "mongoose";
 
+export interface Sensor {
+  sensorName: string;
+  sensorLocation: string;
+  userId: string;
+  createdAt: Date;
+  timestamp: Date;
+  count: number;
+}
+
 const SensorSchema = new Schema({
   sensorName: { type: String, required: true },
   sensorLocation: { type: String, required: true },
