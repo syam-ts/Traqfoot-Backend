@@ -5,7 +5,7 @@ import { SensorModel } from "../domain/entities/Sensor";
 dotenv.config();
 
 cron.schedule("0 * * * *", async () => {
-    console.log("🕐 Running hourly sensor count updater...");
+    console.log("Running hourly sensor count updater...");
 
     try {
         const sensors = await SensorModel.find();
@@ -24,9 +24,9 @@ cron.schedule("0 * * * *", async () => {
         if (bulkUpdates.length > 0) {
             await SensorModel.bulkWrite(bulkUpdates);
         } else {
-            console.log("⚠️ No sensors found to update");
+            console.log("No sensors found to update");
         }
     } catch (err) {
-        console.error("❌ Error during sensor count update:", err);
+        console.error("Error during sensor count update:", err);
     }
 });
