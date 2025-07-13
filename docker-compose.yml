@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  backend:
+    build: .
+    container_name: Traqfoot-Backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MONGO_URI=mongodb+srv://syamnandhu3:0Dci4UZA1ptbECeO@traqfoot.s7hno19.mongodb.net/?retryWrites=true&w=majority&appName=Traqfoot
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+    command: yarn dev
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

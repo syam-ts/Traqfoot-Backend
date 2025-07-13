@@ -1,15 +1,15 @@
-FROM node:23-alpine
+FROM node:18
 
-WORKDIR /app 
+WORKDIR /app
 
-COPY yarn.lock package.json tsconfig.json ./
+COPY package.json yarn.lock ./
 
 RUN yarn install
 
-COPY src ./src
+COPY . .
 
 RUN yarn tsc
 
 EXPOSE 3000
 
-CMD ["node", "src/dist/app.js"]
+CMD ["yarn", "dev"]
