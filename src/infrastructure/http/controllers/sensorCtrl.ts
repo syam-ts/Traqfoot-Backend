@@ -10,8 +10,7 @@ const fetchFootfallService = new FetchFootfall(sensorRepository);
 
 export class SensorController {
   async newSensor(req: any, res: any): Promise<any> {
-    try {
-      console.log("THE USE: ", req.user, " and ", req.user.userId);
+    try { 
       const response = await newSensorService.execute(
         req.body,
         req.user.userId
@@ -23,8 +22,7 @@ export class SensorController {
   }
   
   async fetchAllSensors(req: any, res: any): Promise<any> {
-    try {
-      console.log('all', req.user , 'and', req.user.userId)
+    try { 
       const sensors = await fetchAllSensorsService.execute(req.user.userId);
       res
         .status(200)

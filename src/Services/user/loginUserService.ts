@@ -9,8 +9,7 @@ interface Body {
 export class LoginUser {
     constructor(private userRepository: UserRepository) { }
 
-    async execute(body: Body) {
-        console.log('body form ser', body)
+    async execute(body: Body) { 
         const { email, password } = body;
         return this.userRepository.loginUser(email, password);
     }

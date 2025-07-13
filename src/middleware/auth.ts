@@ -2,8 +2,7 @@ import jwt from "jsonwebtoken";
 import { NextFunction, Response } from "express";
 
 const verifyToken = (req: any, res: Response, next: NextFunction): any => {
-    const authHeader = req.headers["authorization"];
-    console.log("auth head; ", req.headers);
+    const authHeader = req.headers["authorization"]; 
 
     if (!authHeader || !authHeader.startsWith("Bearer "))
         return res

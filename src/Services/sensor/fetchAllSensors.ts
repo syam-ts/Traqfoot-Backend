@@ -3,8 +3,7 @@ import { SensorRepository } from "../../domain/interfaces/repositories/SensorRep
 export class FetchAllSensors {
     constructor(private sensorRepository: SensorRepository) { }
 
-    async execute(userId: string) {
-        console.log('userid from service', userId)
+    async execute(userId: string) { 
         return this.sensorRepository.fetchAllSensors(userId);
     }
 }

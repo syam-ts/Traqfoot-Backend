@@ -2,8 +2,7 @@ import { SensorModel } from "../../domain/entities/Sensor";
 import { SensorRepository } from "../../domain/interfaces/repositories/SensorRepository";
 
 export class SensorRepositoryDb implements SensorRepository {
-    async newSensor(sensorName: string,sensorLocation: string, userId: string): Promise<void> {
-        console.log("ROM MAIN: ", sensorName);
+    async newSensor(sensorName: string,sensorLocation: string, userId: string): Promise<void> { 
         const newSensor = await new SensorModel({
             sensorName,
             sensorLocation,
@@ -16,10 +15,8 @@ export class SensorRepositoryDb implements SensorRepository {
         return;
     }
 
-    async fetchAllSensors(userId: string): Promise<any> {
-        console.log('useid', userId)
-        const sensors = await SensorModel.find({userId});
-        console.log('asl sensor: ', sensors)
+    async fetchAllSensors(userId: string): Promise<any> { 
+        const sensors = await SensorModel.find({userId}); 
 
         if(!sensors) throw new Error('Could not fetch all sensors')
             return sensors;
@@ -29,8 +26,7 @@ export class SensorRepositoryDb implements SensorRepository {
         sensor_id: string,
         timestamp: Date,
         newCount: number
-    ): Promise<void> {
-        console.log('DATA: ',newCount)
+    ): Promise<void> { 
         const updateSensor = await SensorModel.findByIdAndUpdate(sensor_id, {
             $set: {
                 timestamp: timestamp,

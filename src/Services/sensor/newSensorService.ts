@@ -8,8 +8,7 @@ interface Body {
 export class NewSensor {
   constructor(private sensorRepository: SensorRepository) { }
 
-  async execute(body: Body, userId: string) {
-    console.log('BODY FROM SERVEI', body)
+  async execute(body: Body, userId: string) { 
     const { sensorName, sensorLocation } = body;
     return this.sensorRepository.newSensor(sensorName, sensorLocation, userId);
   }

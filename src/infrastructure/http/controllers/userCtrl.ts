@@ -22,9 +22,7 @@ export class UserController {
     async loginUser(req: any, res: any): Promise<any> {
         try {
             const response = await loginUserService.execute(req.body);
-
-            console.log("id: ", response._id);
-
+ 
             const token = jwt.sign({ userId: response._id }, process.env.JWT_SECRET as string, {
                 expiresIn: "7d",
             });
