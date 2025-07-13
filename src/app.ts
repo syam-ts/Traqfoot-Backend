@@ -4,6 +4,7 @@ import indexRouter from "./infrastructure/http/routes/index";
 import { ConnectDB } from "./infrastructure/database/Db";
 import dotenv from "dotenv";
 import cors from "cors";
+import './cron/updateFootfallCount';
 dotenv.config({
   path: ".env",
 });

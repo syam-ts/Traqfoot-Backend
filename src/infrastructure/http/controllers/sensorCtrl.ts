@@ -36,10 +36,11 @@ export class SensorController {
   
   async viewSensor(req: any, res: any): Promise<any> {
     try { 
-      const sensors = await viewSensorService.execute(req.body);
+      console.log('from ctrl: ',req.params)
+      const sensor = await viewSensorService.execute(req.params.sensor_id);
       res
         .status(200)
-        .json({ message: "Sensor loaded successfully", sensors, success: true });
+        .json({ message: "Sensor loaded successfully", sensor, success: true });
     } catch (error) {
       return res.status(500).json({ message: error, success: false });
     }

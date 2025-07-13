@@ -21,13 +21,13 @@ export class UserController {
 
     async loginUser(req: any, res: any): Promise<any> {
         try {
-            const response = await loginUserService.execute(req.body);
+            const user = await loginUserService.execute(req.body);
  
-            const token = jwt.sign({ userId: response._id }, process.env.JWT_SECRET as string, {
+            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET as string, {
                 expiresIn: "7d",
             });
 
-            res.status(201).json({ message: "Login succesfull",token, success: true });
+            res.status(201).json({ message: "Login succesfull",token,user , success: true });
         } catch (error: unknown) {
             const err = error as { message: string };
             res.status(501).json({ message: err.message, success: false });
