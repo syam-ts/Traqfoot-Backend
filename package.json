@@ -5,8 +5,9 @@
   "repository": "https://github.com/syam-ts/Traqfoot-Backend.git",
   "author": "<syamnandhu3@gmail.com>",
   "scripts": {
-    "dev": "node src/dist/app.js",
-    "test": "test src/dist/app.js "
+    "dev": "nodemon src/dist/app.js",
+    "start": "node src/dist/app.js",
+    "build": "tsc"
   },
   "license": "MIT",
   "dependencies": {

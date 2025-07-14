@@ -8,8 +8,8 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn tsc
+RUN yarn build
 
 EXPOSE 3000
 
-CMD ["yarn", "dev"]
+CMD ["node", "src/dist/app.js"]
