@@ -18,8 +18,8 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build Docker Image
-        run: docker build -t traqfoot-backend ./traqfoot-backend
+        run: docker build -t Traqfoot-Backend ./Traqfoot-Backend
 
       - name: Run Tests 
         run: |
-          docker run traqfoot-backend yarn test
+          docker run Traqfoot-Backend yarn test
