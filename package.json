@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "nodemon src/dist/app.js",
     "start": "node src/dist/app.js",
+    "test": "echo && exit 0",
     "build": "tsc"
   },
   "license": "MIT",
