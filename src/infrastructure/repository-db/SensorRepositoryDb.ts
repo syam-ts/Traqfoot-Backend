@@ -2,7 +2,21 @@ import { Sensor, SensorModel } from "../../domain/entities/Sensor";
 import { SensorRepository } from "../../domain/interfaces/repositories/SensorRepository";
 
 export class SensorRepositoryDb implements SensorRepository {
-    async newSensor(sensorName: string,sensorLocation: string, userId: string): Promise<void> { 
+    async newSensor(
+        sensorName: string,
+        sensorLocation: string,
+        userId: string
+    ): Promise<void> {
+        const existingSensor = await SensorModel.findOne({
+            sensorName,
+            userId,
+            sensorLocation,
+        });
+        console.log('EXISITN: ' ,existingSensor)
+
+        if (existingSensor)
+            throw new Error("The same sensor with same location already exists");
+
         const newSensor = await new SensorModel({
             sensorName,
             sensorLocation,
@@ -15,18 +29,17 @@ export class SensorRepositoryDb implements SensorRepository {
         return;
     }
 
-    async fetchAllSensors(userId: string): Promise<any> { 
-        const sensors = await SensorModel.find({userId}); 
+    async fetchAllSensors(userId: string): Promise<any> {
+        const sensors = await SensorModel.find({ userId });
 
-        if(!sensors) throw new Error('Could not fetch all sensors')
-            return sensors;
+        if (!sensors) throw new Error("Could not fetch all sensors");
+        return sensors;
     }
 
     async viewSensor(sensor_id: string): Promise<Sensor> {
+        const sensor = await SensorModel.findOne({ _id: sensor_id }).lean<Sensor>();
 
-        const sensor = await SensorModel.findOne({_id: sensor_id}).lean<Sensor>();
-
-        if(!sensor) throw new Error('No sensor found');
+        if (!sensor) throw new Error("No sensor found");
 
         return sensor;
     }
@@ -35,7 +48,7 @@ export class SensorRepositoryDb implements SensorRepository {
         sensor_id: string,
         timestamp: Date,
         newCount: number
-    ): Promise<void> { 
+    ): Promise<void> {
         const updateSensor = await SensorModel.findByIdAndUpdate(sensor_id, {
             $set: {
                 timestamp: timestamp,

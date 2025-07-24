@@ -17,5 +17,6 @@ const SensorSchema = new Schema({
   timestamp: { type: Date, required: false },
   count: { type: Number, required: true, default: 0 },
 });
+ 
 
 export const SensorModel = model("sensor", SensorSchema);

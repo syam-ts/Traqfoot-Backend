@@ -12,19 +12,20 @@ const fetchFootfallService = new FetchFootfall(sensorRepository);
 
 export class SensorController {
   async newSensor(req: any, res: any): Promise<any> {
-    try { 
+    try {
       const response = await newSensorService.execute(
         req.body,
         req.user.userId
       );
       res.status(201).json({ message: "New sensor added", success: true });
-    } catch (error) {
-      return res.status(500).json({ message: error, success: false });
+    } catch (error: unknown) {
+      const err = error as { message: { error: { message: string } } };
+      return res.status(500).json({ message: err.message, success: false });
     }
   }
-  
+
   async fetchAllSensors(req: any, res: any): Promise<any> {
-    try { 
+    try {
       const sensors = await fetchAllSensorsService.execute(req.user.userId);
       res
         .status(200)
@@ -33,10 +34,10 @@ export class SensorController {
       return res.status(500).json({ message: error, success: false });
     }
   }
-  
+
   async viewSensor(req: any, res: any): Promise<any> {
-    try { 
-      console.log('from ctrl: ',req.params)
+    try {
+      console.log("from ctrl: ", req.params);
       const sensor = await viewSensorService.execute(req.params.sensor_id);
       res
         .status(200)
